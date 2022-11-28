@@ -67,6 +67,33 @@ namespace API.Data
 
             return _;
         }
+
+
+        public virtual async Task<List<GetMasterBarangByKdBarang>> GetMasterBarangByKdBarang(string KdBarang, OutputParameter<string> returnValue = null, CancellationToken cancellationToken = default)
+        {
+            var parameterreturnValue = new SqlParameter
+            {
+                ParameterName = "returnValue",
+                Direction = System.Data.ParameterDirection.Output,
+                SqlDbType = System.Data.SqlDbType.Int,
+            };
+
+            var sqlParameters = new []
+            {
+                new SqlParameter
+                {
+                    ParameterName = "KdBarang",
+                    Value = KdBarang,
+                    SqlDbType = System.Data.SqlDbType.Char,
+                },
+                parameterreturnValue,
+            };
+            var _ = await _context.SqlQueryAsync<GetMasterBarangByKdBarang>("EXEC @returnValue = [dbo].[GetMasterBarangByKdBarang] @KdBarang", sqlParameters, cancellationToken);
+
+            returnValue?.SetValue(parameterreturnValue.Value);
+
+            return _;
+        }
     }
 
     

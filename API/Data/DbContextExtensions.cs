@@ -93,4 +93,5 @@ namespace API.Data
             _value = null == value || Convert.IsDBNull(value) ? default(TValue) : (TValue)value;
         }
     }
+    
 }
