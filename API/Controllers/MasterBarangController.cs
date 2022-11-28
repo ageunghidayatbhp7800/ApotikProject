@@ -30,6 +30,7 @@ namespace API.Controllers
                 return item;
         }
 
+        //20221128 - Fixing Method Name [Ageung]
         // api/MasterBarang/GetMasterBarangByKdBarang/{KdBarang}
         [HttpPost("GetMasterBarangByKdBarang")]
         public async Task<IEnumerable<GetMasterBarangByKdBarang>> GetMasterBarangByID(string KdBarang)
